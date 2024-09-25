@@ -8,13 +8,16 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
 	<IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">true</IsAotCompatible>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
 	<Title>ThreadSharp</Title>
 	<Copyright>© 2024 itsWindows11 &amp; contributors.</Copyright>
 	<PackageProjectUrl>https://github.com/itsWindows11/ThreadSharp</PackageProjectUrl>
 	<RepositoryUrl>https://github.com/itsWindows11/ThreadSharp</RepositoryUrl>
 	<PackageTags>threads;threads api;meta;facebook;c#;csharp;</PackageTags>
-	<PackageReleaseNotes>-- Version 1.0.0.0 --
-Initial release.</PackageReleaseNotes>
+	<PackageReleaseNotes>
+		-- Version 1.0.0 --
+		Initial release.
+	</PackageReleaseNotes>
 	<Description>A C# API wrapper for the Threads API.</Description>
 	<PackageIcon>logo.png</PackageIcon>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
