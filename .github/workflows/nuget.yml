@@ -23,7 +23,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Pack NuGet Packages
-      run: dotnet pack --output nupkgs --no-restore --no-build
+      run: dotnet pack ./src/ThreadSharp/ThreadSharp.csproj --output nupkgs --no-restore --no-build
     - name: Upload NuGet Package
       if: github.ref_type == 'tag' && startsWith(github.ref, 'refs/tags/v')
       run: dotnet nuget push nupkgs/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
