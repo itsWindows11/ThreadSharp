@@ -11,6 +11,7 @@
 
 	<Title>ThreadSharp</Title>
 	<Copyright>© 2024 itsWindows11 &amp; contributors.</Copyright>
+	<PackageId>ThreadSharp</PackageId>
 	<PackageProjectUrl>https://github.com/itsWindows11/ThreadSharp</PackageProjectUrl>
 	<RepositoryUrl>https://github.com/itsWindows11/ThreadSharp</RepositoryUrl>
 	<PackageTags>threads;threads api;meta;facebook;c#;csharp;</PackageTags>
