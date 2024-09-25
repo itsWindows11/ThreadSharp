@@ -1,4 +1,4 @@
-name: Build & Publish NuGet Package
+name: Build & Test & Publish NuGet Package
 
 on:
   push:
@@ -19,11 +19,9 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore --configuration Release
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Pack NuGet Packages
-      run: dotnet pack ./src/ThreadSharp/ThreadSharp.csproj --output nupkgs --no-restore --no-build
     - name: Upload NuGet Package
       if: github.ref_type == 'tag' && startsWith(github.ref, 'refs/tags/v')
-      run: dotnet nuget push nupkgs/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push ./src/ThreadSharp/bin/Release/ThreadSharp.*.**.*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
