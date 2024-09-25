@@ -16,7 +16,7 @@
 	<RepositoryUrl>https://github.com/itsWindows11/ThreadSharp</RepositoryUrl>
 	<PackageTags>threads;threads api;meta;facebook;c#;csharp;</PackageTags>
 	<PackageReleaseNotes>
-		-- Version 1.0.0 --
+		-- Version 0.5.0 --
 		Initial release.
 	</PackageReleaseNotes>
 	<Description>A C# API wrapper for the Threads API.</Description>
@@ -26,6 +26,7 @@
 	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	<IncludeSymbols>True</IncludeSymbols>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<Version>0.5.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
