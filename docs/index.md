@@ -4,22 +4,15 @@ layout: home
 
 hero:
   name: "ThreadSharp"
-  text: "A C# API wrapper for the Threads API."
-  tagline: My great project tagline
+  tagline: "A C# API wrapper for the Threads API."
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: View Documentation
+      link: /docs
     - theme: alt
-      text: API Examples
-      link: /api-examples
-
-features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+      text: Samples
+      link: /samples
+  image:
+    src: assets/hero-icon.png
+    alt: "ThreadSharp logo, consisting of a hash symbol."
 ---
-

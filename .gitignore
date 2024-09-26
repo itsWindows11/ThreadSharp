@@ -499,5 +499,5 @@ dist
 .pnp.*
 
 # VitePress cache & build output
-.vitepress/cache
-.vitepress/dist
+docs/.vitepress/cache
+docs/.vitepress/dist
