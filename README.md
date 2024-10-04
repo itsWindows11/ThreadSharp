@@ -4,3 +4,7 @@
 <center>A C# API wrapper for the Threads API.</center>
 
 ![NuGet Version](https://img.shields.io/nuget/v/ThreadSharp)
+
+## Documentation
+
+You can browse the documentation at https://itswindows11.github.io/ThreadSharp.
