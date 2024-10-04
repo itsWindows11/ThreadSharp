@@ -26,8 +26,8 @@ Derived from: [`ThreadsIdContainer`](./ThreadsIdContainer) --> [`BaseJsonUnrecog
 
 ## Properties
 
-| Property    | Type     | Summary                           | Default Value |
-|-------------|----------|-----------------------------------|---------------|
-| Period      | `string` | The period of the insight/metric. | --            |
-| Title       | `string` | The metric title.                 | `null`        |
-| Description | `string` | The metric description.           | `null`        |
+| Property    | Type                                       | Summary                           | Default Value |
+|-------------|--------------------------------------------|-----------------------------------|---------------|
+| Period      | [`MetricPeriod`](../../Enums/MetricPeriod) | The period of the insight/metric. | --            |
+| Title       | `string`                                   | The metric title.                 | `null`        |
+| Description | `string`                                   | The metric description.           | `null`        |

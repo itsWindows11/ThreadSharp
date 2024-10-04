@@ -43,5 +43,5 @@ public sealed class UserMetricPagingParameters
     /// The metrics' period.
     /// </summary>
     [AliasAs("period")]
-    public UserMetricPeriod? Period { get; set; }
+    public MetricPeriod? Period { get; set; }
 }

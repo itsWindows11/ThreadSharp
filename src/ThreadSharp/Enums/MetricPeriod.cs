@@ -5,7 +5,7 @@ namespace ThreadSharp.Enums;
 /// <summary>
 /// Enum representing possible user metric period options.
 /// </summary>
-public enum UserMetricPeriod
+public enum MetricPeriod
 {
     /// <summary>
     /// Metrics in a day.
@@ -16,5 +16,9 @@ public enum UserMetricPeriod
     /// Metrics in the lifetime of an account.
     /// </summary>
     [EnumMember(Value = "lifetime")]
-    Lifetime
+    Lifetime,
+    /// <summary>
+    /// For metric periods not yet supported by ThreadSharp.
+    /// </summary>
+    Unknown
 }

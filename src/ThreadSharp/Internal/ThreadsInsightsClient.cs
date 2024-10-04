@@ -4,6 +4,7 @@ using ThreadSharp.Exceptions;
 using ThreadSharp.Helpers;
 using ThreadSharp.Models;
 using ThreadSharp.Models.Api;
+using ThreadSharp.Models.Api.Insights;
 
 namespace ThreadSharp.Internal;
 
@@ -115,16 +116,16 @@ public sealed class ThreadsInsightsClient
     /// The cancellation token to use in case the caller chooses to cancel the operation.
     /// </param>
     /// <returns>
-    /// The result, containing either the <see cref="ThreadsMediaInsights"/> or an error.
+    /// The result, containing either a list of <see cref="ThreadsMediaInsightItem"/>s, or an error.
     /// </returns>
-    public Task<ThreadsResult<ThreadsMediaInsights>> GetForPostAsync(string mediaContainerId, string[] metrics, CancellationToken cancellationToken = default)
+    public Task<ThreadsResult<List<ThreadsMediaInsightItem>>> GetForPostAsync(string mediaContainerId, string[] metrics, CancellationToken cancellationToken = default)
     {
         return RetryHelpers.RetryOnServerErrorAsync(async () =>
         {
             using var response = await _refitClient.GetMediaInsightsAsync(_accessToken, string.Join(",", metrics), mediaContainerId, cancellationToken);
 
             if (response.Content == null)
-                return new ThreadsResult<ThreadsMediaInsights>(error: new ThreadsBlankResponseException(), response.StatusCode);
+                return new ThreadsResult<List<ThreadsMediaInsightItem>>(error: new ThreadsBlankResponseException(), response.StatusCode);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -135,18 +136,18 @@ public sealed class ThreadsInsightsClient
                 );
 
                 if (errorContent == null)
-                    return new ThreadsResult<ThreadsMediaInsights>(error: new ThreadsBlankResponseException(), response.StatusCode);
+                    return new ThreadsResult<List<ThreadsMediaInsightItem>>(error: new ThreadsBlankResponseException(), response.StatusCode);
 
-                return new ThreadsResult<ThreadsMediaInsights>(new ThreadsRequestException(errorContent), response.StatusCode);
+                return new ThreadsResult<List<ThreadsMediaInsightItem>>(new ThreadsRequestException(errorContent), response.StatusCode);
             }
 
             var content = await JsonSerializer.DeserializeAsync(
                 response.Content,
-                ThreadsSourceGenerationContext.Default.ThreadsDataContainerThreadsMediaInsights,
+                ThreadsSourceGenerationContext.Default.ThreadsDataContainerListThreadsMediaInsightItem,
                 cancellationToken: cancellationToken
             );
 
-            return new ThreadsResult<ThreadsMediaInsights>(content?.Data, response.StatusCode);
+            return new ThreadsResult<List<ThreadsMediaInsightItem>>(content?.Data, response.StatusCode);
         }, _getMaxRetriesOnServerError());
     }
 }

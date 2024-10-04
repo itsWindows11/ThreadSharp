@@ -1,4 +1,6 @@
 ﻿using System.Text.Json.Serialization;
+using ThreadSharp.Converters;
+using ThreadSharp.Enums;
 using ThreadSharp.Models.Api.Insights;
 
 namespace ThreadSharp.Models.Api;
@@ -20,7 +22,8 @@ public class ThreadsUserInsightDataBase : ThreadsIdContainer
     /// The period of the insight/metric.
     /// </summary>
     [JsonPropertyName("period")]
-    public required string Period { get; set; }
+    [JsonConverter(typeof(StringToMetricPeriodConverter))]
+    public required MetricPeriod Period { get; set; }
 
     /// <summary>
     /// The metric title.

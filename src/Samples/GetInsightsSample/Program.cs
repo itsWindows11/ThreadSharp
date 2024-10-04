@@ -35,7 +35,7 @@ var insightsResult = await threadsClient.Insights.GetForCurrentUserAsync(new Use
         "followers_count",
         "follower_demographics"
     ],
-    Period = UserMetricPeriod.Lifetime
+    Period = MetricPeriod.Lifetime
 }, Breakdown.Age | Breakdown.Gender);
 
 if (insightsResult.Value is not null)

@@ -14,7 +14,7 @@ namespace ThreadSharp.Internal;
 [JsonSerializable(typeof(ThreadsPublishingLimitData))]
 [JsonSerializable(typeof(ThreadsMediaContainerStatus))]
 [JsonSerializable(typeof(List<ThreadsPost>))]
-[JsonSerializable(typeof(ThreadsDataContainer<ThreadsMediaInsights>))]
+[JsonSerializable(typeof(ThreadsDataContainer<List<ThreadsMediaInsightItem>))]
 [JsonSerializable(typeof(ThreadsDataContainer<List<ThreadsUserInsightDataBase>>))]
 [JsonSerializable(typeof(ThreadsDataContainer<List<ThreadsUserInsightViewsData>>))]
 [JsonSerializable(typeof(ThreadsDataContainer<List<ThreadsUserInsightLikesData>>))]
