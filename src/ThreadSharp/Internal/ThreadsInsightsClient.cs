@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Net;
+using System.Text.Json;
 using ThreadSharp.Enums;
 using ThreadSharp.Exceptions;
 using ThreadSharp.Helpers;
@@ -82,6 +83,9 @@ public sealed class ThreadsInsightsClient
 
             if (!response.IsSuccessStatusCode)
             {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    return new ThreadsResult<List<ThreadsUserInsightDataBase>>(error: new ThreadsUnauthenticatedException(), response.StatusCode);
+
                 var errorContent = await JsonSerializer.DeserializeAsync(
                     response.Content,
                     ThreadsSourceGenerationContext.Default.DictionaryStringJsonElement,
@@ -129,6 +133,9 @@ public sealed class ThreadsInsightsClient
 
             if (!response.IsSuccessStatusCode)
             {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    return new ThreadsResult<List<ThreadsMediaInsightItem>>(error: new ThreadsUnauthenticatedException(), response.StatusCode);
+
                 var errorContent = await JsonSerializer.DeserializeAsync(
                     response.Content,
                     ThreadsSourceGenerationContext.Default.DictionaryStringJsonElement,

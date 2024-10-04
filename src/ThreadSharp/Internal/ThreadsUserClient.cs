@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Net;
+using System.Text.Json;
 using ThreadSharp.Enums;
 using ThreadSharp.Exceptions;
 using ThreadSharp.Helpers;
@@ -58,6 +59,9 @@ public sealed class ThreadsUserClient
 
             if (!response.IsSuccessStatusCode)
             {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    return new ThreadsResult<ThreadsProfile>(error: new ThreadsUnauthenticatedException(), response.StatusCode);
+
                 var errorContent = await JsonSerializer.DeserializeAsync(
                     response.Content,
                     ThreadsSourceGenerationContext.Default.DictionaryStringJsonElement,
@@ -109,6 +113,9 @@ public sealed class ThreadsUserClient
 
             if (!response.IsSuccessStatusCode)
             {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    return new ThreadsResult<List<ThreadsPost>>(error: new ThreadsUnauthenticatedException(), response.StatusCode);
+
                 var errorContent = await JsonSerializer.DeserializeAsync(
                     response.Content,
                     ThreadsSourceGenerationContext.Default.DictionaryStringJsonElement,
@@ -163,6 +170,9 @@ public sealed class ThreadsUserClient
 
             if (!response.IsSuccessStatusCode)
             {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    return new ThreadsResult<List<ThreadsPost>>(error: new ThreadsUnauthenticatedException(), response.StatusCode);
+
                 var errorContent = await JsonSerializer.DeserializeAsync(
                     response.Content,
                     ThreadsSourceGenerationContext.Default.DictionaryStringJsonElement,
@@ -211,6 +221,9 @@ public sealed class ThreadsUserClient
 
             if (!response.IsSuccessStatusCode)
             {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    return new ThreadsResult<ThreadsPublishingLimitData>(error: new ThreadsUnauthenticatedException(), response.StatusCode);
+
                 var errorContent = await JsonSerializer.DeserializeAsync(
                     response.Content,
                     ThreadsSourceGenerationContext.Default.DictionaryStringJsonElement,
@@ -258,6 +271,9 @@ public sealed class ThreadsUserClient
 
             if (!response.IsSuccessStatusCode)
             {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    return new ThreadsResult<ThreadsIdContainer>(error: new ThreadsUnauthenticatedException(), response.StatusCode);
+
                 var errorContent = await JsonSerializer.DeserializeAsync(
                     response.Content,
                     ThreadsSourceGenerationContext.Default.DictionaryStringJsonElement,
@@ -341,6 +357,9 @@ public sealed class ThreadsUserClient
 
             if (!response.IsSuccessStatusCode)
             {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    return new ThreadsResult<ThreadsIdContainer>(error: new ThreadsUnauthenticatedException(), response.StatusCode);
+
                 var errorContent = await JsonSerializer.DeserializeAsync(
                     response.Content,
                     ThreadsSourceGenerationContext.Default.DictionaryStringJsonElement,
@@ -387,6 +406,9 @@ public sealed class ThreadsUserClient
 
             if (!response.IsSuccessStatusCode)
             {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    return new ThreadsResult<ThreadsIdContainer>(error: new ThreadsUnauthenticatedException(), response.StatusCode);
+
                 var errorContent = await JsonSerializer.DeserializeAsync(
                     response.Content,
                     ThreadsSourceGenerationContext.Default.DictionaryStringJsonElement,
