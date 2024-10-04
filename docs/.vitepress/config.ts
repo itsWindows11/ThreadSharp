@@ -82,7 +82,11 @@ export default defineConfig({
   title: "ThreadSharp",
   description: "A C# API wrapper for the Threads API.",
   cleanUrls: true,
+  lastUpdated: true,
   base: "/ThreadSharp/",
+  sitemap: {
+    hostname: "https://itswindows11.github.io/ThreadSharp"
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
