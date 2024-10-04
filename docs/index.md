@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "ThreadSharp"
-  tagline: "A C# API wrapper for the Threads API."
+  tagline: "A C# wrapper for the Threads API."
   actions:
     - theme: brand
       text: View Documentation

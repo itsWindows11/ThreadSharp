@@ -1,7 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using ThreadSharp.Converters;
 using ThreadSharp.Enums;
-using ThreadSharp.Models;
 
 namespace ThreadSharp.Models.Api;
 

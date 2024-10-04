@@ -1,7 +1,7 @@
 ﻿namespace ThreadSharp.Exceptions;
 
 /// <summary>
-/// Represents the exception thrown when the response received from the Threads API is blank.
+/// Represents the exception thrown when there's an unknown error on the Threads API end.
 /// </summary>
 public sealed class ThreadsServerErrorException : ThreadsException
 {

@@ -11,5 +11,5 @@ public class AttachmentLinkContainerContent : BaseMediaContainerContent
     /// The link to add to the post as an attachment.
     /// </summary>
     [AliasAs("link_attachment")]
-    public string? LinkAttachment { get; set; }
+    public required string LinkAttachment { get; set; }
 }
