@@ -14,7 +14,7 @@ Install-Package ThreadSharp
 ```
 
 ```ps [.NET CLI]
-dotnet add package ThreadSharp --version 0.5.1
+dotnet add package ThreadSharp --version 0.6.0
 ```
 :::
 
