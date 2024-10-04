@@ -2,3 +2,5 @@
 
 # <center>ThreadSharp</center>
 <center>A C# API wrapper for the Threads API.</center>
+
+![NuGet Version](https://img.shields.io/nuget/v/ThreadSharp)

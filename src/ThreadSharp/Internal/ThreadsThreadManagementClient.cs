@@ -121,7 +121,7 @@ public sealed class ThreadsThreadManagementClient
     }
 
     /// <summary>
-    /// Gets replies a specific thread.
+    /// Gets replies to a specific thread.
     /// </summary>
     /// <param name="threadId">The ID of the thread or media container.</param>
     /// <param name="fields">
@@ -177,7 +177,8 @@ public sealed class ThreadsThreadManagementClient
     }
 
     /// <summary>
-    /// Gets replies a specific thread, along with the child replies as separate.
+    /// Gets replies to a specific thread, along with the child replies as separate
+    /// replies.
     /// </summary>
     /// <remarks>
     /// Note: Replies are in separate items in the list, not nested in each post.
