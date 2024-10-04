@@ -2,7 +2,7 @@
 title: ThreadsIdContainer
 ---
 
-# [ThreadSharp](../../).[Models](../).[Api](.).ThreadsIdContainer
+# [ThreadSharp](../../).[Models](../).[Api](./).ThreadsIdContainer
 
 ## Definition
 

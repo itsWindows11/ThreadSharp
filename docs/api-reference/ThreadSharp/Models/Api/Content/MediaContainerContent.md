@@ -2,7 +2,7 @@
 title: MediaContainerContent
 ---
 
-# [ThreadSharp](../../../).[Models](../../).[Api](../).[Content](.).MediaContainerContent
+# [ThreadSharp](../../../).[Models](../../).[Api](../).[Content](./).MediaContainerContent
 
 ## Definition
 

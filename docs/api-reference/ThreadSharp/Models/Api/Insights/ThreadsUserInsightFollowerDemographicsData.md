@@ -2,7 +2,7 @@
 title: ThreadsUserInsightFollowerDemographicsData
 ---
 
-# [ThreadSharp](../../../).[Models](../../).[Api](../).[Insights](.).ThreadsUserInsightFollowerDemographicsData
+# [ThreadSharp](../../../).[Models](../../).[Api](../).[Insights](./).ThreadsUserInsightFollowerDemographicsData
 
 ## Definition
 

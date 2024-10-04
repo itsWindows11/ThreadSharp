@@ -2,7 +2,7 @@
 title: ThreadsClient
 ---
 
-# [ThreadSharp](.).ThreadsClient
+# [ThreadSharp](./).ThreadsClient
 
 ## Definition
 

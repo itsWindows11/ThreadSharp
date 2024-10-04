@@ -2,7 +2,7 @@
 title: ThreadsMediaInsightItem
 ---
 
-# [ThreadSharp](../../../).[Models](../../).[Api](../).[Insights](.).ThreadsMediaInsightItem
+# [ThreadSharp](../../../).[Models](../../).[Api](../).[Insights](./).ThreadsMediaInsightItem
 
 ## Definition
 

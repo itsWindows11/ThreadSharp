@@ -2,7 +2,7 @@
 title: ThreadsPost
 ---
 
-# [ThreadSharp](../../).[Models](../).[Api](.).ThreadsPost
+# [ThreadSharp](../../).[Models](../).[Api](./).ThreadsPost
 
 ## Definition
 

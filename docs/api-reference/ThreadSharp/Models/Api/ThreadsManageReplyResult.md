@@ -2,7 +2,7 @@
 title: ThreadsManageReplyResult
 ---
 
-# [ThreadSharp](../../).[Models](../).[Api](.).ThreadsManageReplyResult
+# [ThreadSharp](../../).[Models](../).[Api](./).ThreadsManageReplyResult
 
 ## Definition
 

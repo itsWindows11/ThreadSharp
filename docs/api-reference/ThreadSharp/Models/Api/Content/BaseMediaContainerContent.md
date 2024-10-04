@@ -2,7 +2,7 @@
 title: BaseMediaContainerContent
 ---
 
-# [ThreadSharp](../../../).[Models](../../).[Api](../).[Content](.).BaseMediaContainerContent
+# [ThreadSharp](../../../).[Models](../../).[Api](../).[Content](./).BaseMediaContainerContent
 
 ## Definition
 

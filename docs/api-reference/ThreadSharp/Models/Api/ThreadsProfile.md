@@ -2,7 +2,7 @@
 title: ThreadsProfile
 ---
 
-# [ThreadSharp](../../).[Models](../).[Api](.).ThreadsProfile
+# [ThreadSharp](../../).[Models](../).[Api](./).ThreadsProfile
 
 ## Definition
 

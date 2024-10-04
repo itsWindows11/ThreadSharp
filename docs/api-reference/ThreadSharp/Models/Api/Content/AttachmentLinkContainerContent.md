@@ -2,7 +2,7 @@
 title: AttachmentLinkContainerContent
 ---
 
-# [ThreadSharp](../../../).[Models](../../).[Api](../).[Content](.).AttachmentLinkContainerContent
+# [ThreadSharp](../../../).[Models](../../).[Api](../).[Content](./).AttachmentLinkContainerContent
 
 ## Definition
 

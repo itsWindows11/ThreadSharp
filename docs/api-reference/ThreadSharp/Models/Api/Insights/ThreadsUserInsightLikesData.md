@@ -2,7 +2,7 @@
 title: ThreadsUserInsightLikesData
 ---
 
-# [ThreadSharp](../../../).[Models](../../).[Api](../).[Insights](.).ThreadsUserInsightLikesData
+# [ThreadSharp](../../../).[Models](../../).[Api](../).[Insights](./).ThreadsUserInsightLikesData
 
 ## Definition
 

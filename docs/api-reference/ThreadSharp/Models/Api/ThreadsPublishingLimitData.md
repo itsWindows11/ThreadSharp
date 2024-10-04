@@ -2,7 +2,7 @@
 title: ThreadsPublishingLimitData
 ---
 
-# [ThreadSharp](../../).[Models](../).[Api](.).ThreadsPublishingLimitData
+# [ThreadSharp](../../).[Models](../).[Api](./).ThreadsPublishingLimitData
 
 ## Definition
 

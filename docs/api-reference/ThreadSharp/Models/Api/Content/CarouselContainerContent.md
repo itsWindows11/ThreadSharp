@@ -2,7 +2,7 @@
 title: CarouselContainerContent
 ---
 
-# [ThreadSharp](../../../).[Models](../../).[Api](../).[Content](.).CarouselContainerContent
+# [ThreadSharp](../../../).[Models](../../).[Api](../).[Content](./).CarouselContainerContent
 
 ## Definition
 

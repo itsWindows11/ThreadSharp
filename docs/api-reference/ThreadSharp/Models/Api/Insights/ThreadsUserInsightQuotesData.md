@@ -2,7 +2,7 @@
 title: ThreadsUserInsightQuotesData
 ---
 
-# [ThreadSharp](../../../).[Models](../../).[Api](../).[Insights](.).ThreadsUserInsightQuotesData
+# [ThreadSharp](../../../).[Models](../../).[Api](../).[Insights](./).ThreadsUserInsightQuotesData
 
 ## Definition
 

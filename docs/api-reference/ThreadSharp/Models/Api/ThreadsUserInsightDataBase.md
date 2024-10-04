@@ -2,7 +2,7 @@
 title: ThreadsUserInsightDataBase
 ---
 
-# [ThreadSharp](../../).[Models](../).[Api](.).ThreadsUserInsightDataBase
+# [ThreadSharp](../../).[Models](../).[Api](./).ThreadsUserInsightDataBase
 
 ## Definition
 

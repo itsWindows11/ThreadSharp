@@ -2,7 +2,7 @@
 title: ThreadsMediaContainerStatus
 ---
 
-# [ThreadSharp](../../).[Models](../).[Api](.).ThreadsMediaContainerStatus
+# [ThreadSharp](../../).[Models](../).[Api](./).ThreadsMediaContainerStatus
 
 ## Definition
 
