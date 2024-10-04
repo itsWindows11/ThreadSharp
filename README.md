@@ -8,3 +8,13 @@
 ## Documentation
 
 You can browse the documentation at https://itswindows11.github.io/ThreadSharp.
+
+## Usage
+
+You can start by initializing a `ThreadsClient` with an access token:
+
+```c#
+ThreadsClient threadsClient = new ThreadsClient("access-token");
+```
+
+Note that ThreadSharp doesn't handle authentication manually, so you will have to handle the authentication depending on your platform's OAuth2 library.
