@@ -7,7 +7,7 @@
 
 ## Documentation
 
-You can browse the documentation at https://itswindows11.github.io/ThreadSharp.
+You can browse the documentation at [itswindows11.github.io/ThreadSharp](https://itswindows11.github.io/ThreadSharp/docs/).
 
 ## Usage
 
