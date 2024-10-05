@@ -21,9 +21,9 @@ You can browse the documentation at [itswindows11.github.io/ThreadSharp](https:/
 There are multiple ways to participate in the community:
 
 - Upvote popular feature requests.
-- [Submit a new feature](https://github.com/itsWindows11/ThreadSharp/pulls)
+- [Submit a new feature](https://github.com/itsWindows11/ThreadSharp/pulls).
 - [File bugs and feature requests](https://github.com/itsWindows11/ThreadSharp/issues/new/choose).
-- Review source [code changes](https://github.com/itsWindows11/ThreadSharp/commits)
+- Review [source code changes](https://github.com/itsWindows11/ThreadSharp/commits).
 
 ## Usage
 
