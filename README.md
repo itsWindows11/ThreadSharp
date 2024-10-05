@@ -43,8 +43,8 @@ ThreadsClient threadsClient = new ThreadsClient("access-token");
 Ensure you have following components:
 
 - [Git](https://git-scm.com/)
-- a .NET IDE of your choice, preferably [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
-- the .NET SDK
+- A .NET IDE of your choice, preferably [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
+- [The .NET SDK](https://dotnet.microsoft.com/en-us/download/visual-studio-sdks)
 
 ### Git
 
