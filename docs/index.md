@@ -11,7 +11,7 @@ hero:
       link: /docs
     - theme: alt
       text: Samples
-      link: /samples
+      link: https://github.com/itsWindows11/ThreadSharp/tree/main/src/Samples
   image:
     src: assets/hero-icon.png
     alt: "ThreadSharp logo, consisting of a hash symbol."
