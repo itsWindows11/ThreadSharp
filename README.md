@@ -1,6 +1,3 @@
-> [!IMPORTANT]
-> ThreadSharp is limited by the capabilities of the [Threads public API](https://developers.facebook.com/docs/threads/) and so not all features that you enjoy in the Threads app are available.
-
 ![ThreadSharp banner](https://github.com/itsWindows11/ThreadSharp/blob/main/assets/banner.png?raw=true)
 <h4 align="center"> A C# API wrapper for the Threads API.</h4>
 <p align="center">
@@ -11,6 +8,9 @@
   <a style="text-decoration:none" href="https://www.nuget.org/packages/ThreadSharp">
     <img src="https://img.shields.io/nuget/v/ThreadSharp" alt="Discord" /></a>
 </p>
+
+> [!IMPORTANT]
+> ThreadSharp is limited by the capabilities of the [Threads public API](https://developers.facebook.com/docs/threads/) and so not all features that you enjoy in the Threads app are available.
 
 ## Documentation
 
