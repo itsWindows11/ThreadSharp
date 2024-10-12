@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: View Documentation
-      link: /docs
+      link: /docs/
     - theme: alt
       text: Samples
       link: https://github.com/itsWindows11/ThreadSharp/tree/main/src/Samples

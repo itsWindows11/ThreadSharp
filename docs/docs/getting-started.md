@@ -14,9 +14,11 @@ Install-Package ThreadSharp
 ```
 
 ```ps [.NET CLI]
-dotnet add package ThreadSharp --version 0.6.0
+dotnet add package ThreadSharp --version [version]
 ```
 :::
+
+Replace `[version]` with the latest version shown in the badge above.
 
 ## Using ThreadSharp
 
@@ -24,13 +26,15 @@ dotnet add package ThreadSharp --version 0.6.0
 
 The client for ThreadSharp, [`ThreadsClient`](/api-reference/ThreadSharp/ThreadsClient), contains different sub-clients for different use cases, listed below.
 
-- For any operations related to the currently authenticated user, including posting threads, you can use the `ThreadsClient.Me` property to access the [`ThreadsUserClient`](/api-reference/ThreadSharp/Internal/ThreadsUserClient).
-- For any operations related to thread management (excluding post/media container creation), you can use the `ThreadsClient.Threads` property to access the [`ThreadsThreadManagementClient`](/api-reference/ThreadSharp/Internal/ThreadsThreadManagementClient).
-- For any operations related to insights, you can use the `ThreadsClient.Insights` property to access the [`ThreadsInsightsClient`](/api-reference/ThreadSharp/Internal/ThreadsInsightsClient).
+- For any operations related to the currently authenticated user, including posting threads, you can use the [`ThreadsClient.Me`](/api-reference/ThreadSharp/ThreadsClient#properties) property to access the [`ThreadsUserClient`](/api-reference/ThreadSharp/Internal/ThreadsUserClient).
+- For any operations related to thread management (excluding post/media container creation), you can use the [`ThreadsClient.Threads`](/api-reference/ThreadSharp/ThreadsClient#properties) property to access the [`ThreadsThreadManagementClient`](/api-reference/ThreadSharp/Internal/ThreadsThreadManagementClient).
+- For any operations related to insights, you can use the [`ThreadsClient.Insights`](/api-reference/ThreadSharp/ThreadsClient#properties) property to access the [`ThreadsInsightsClient`](/api-reference/ThreadSharp/Internal/ThreadsInsightsClient).
 
 ### Samples
 
 You can find a list of samples in the menu (accessed through the hamburger icon), which can be helpful for certain use cases.
+
+Samples can be also accessed [on GitHub](https://github.com/itsWindows11/ThreadSharp/tree/main/src/Samples/).
 
 ### Nullable Properties in Models
 
