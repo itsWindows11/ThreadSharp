@@ -33,8 +33,7 @@ git clone https://github.com/itsWindows11/ThreadSharp
 ### Build the project
 
 - Open `ThreadSharp.sln`.
-- Set the Startup Project to `ThreadSharp.csproj` (of course!)
-- Build with `DEBUG` mode activated
+- Build `ThreadSharp.csproj` with `DEBUG` mode activated
 
 ## License
 
