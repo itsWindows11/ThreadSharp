@@ -37,6 +37,6 @@ git clone https://github.com/itsWindows11/ThreadSharp
 
 ## License
 
-Copyright (c) 2024 `itsWindows11` & `ThreadSharp` contributors.
+Copyright (c) 2024 itsWindows11 & ThreadSharp contributors.
 
 Licensed under the [MIT License](https://github.com/itsWindows11/ThreadSharp/blob/main/LICENSE).
