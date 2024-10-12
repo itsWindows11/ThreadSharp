@@ -27,14 +27,14 @@ There are multiple ways to participate in the community:
 
 ## Usage
 
-> [!NOTE]
-> ThreadSharp doesn't handle authentication manually, so you will have to handle the authentication depending on your platform's OAuth2 library.
-
 You can start by initializing a `ThreadsClient` with an access token:
 
 ```c#
 ThreadsClient threadsClient = new ThreadsClient("access-token");
 ```
+
+> [!NOTE]
+> ThreadSharp doesn't handle authentication manually, so you will have to handle the authentication depending on your platform's OAuth2 library.
 
 ## Building the Code
 
