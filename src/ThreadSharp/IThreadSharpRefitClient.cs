@@ -128,6 +128,7 @@ internal partial interface IThreadSharpRefitClient
         BaseMediaContainerContent postContent,
         [AliasAs("reply_control")] ReplyControl replyControl = ReplyControl.Everyone,
         [AliasAs("reply_to_id")] string? replyToId = null,
+        [AliasAs("quote_post_id")] string? quotePostId = null,
         string? text = null,
         [AliasAs("allowlisted_country_codes")] string? allowlistedCountryCodes = null,
         CancellationToken cancellationToken = default

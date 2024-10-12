@@ -308,6 +308,7 @@ public sealed class ThreadsUserClient
     /// </param>
     /// <param name="text">The text to put in the post.</param>
     /// <param name="replyToId">The post/media container ID to reply to.</param>
+    /// <param name="quotePostId">The post/media container ID to quote.</param>
     /// <param name="replyControl">An option to restrict replies or open them to everyone.</param>
     /// <param name="allowlistedCountryCodes">List of valid ISO 3166-1 alpha-2 country codes to restrict viewing the post to.</param>
     /// <param name="cancellationToken">
@@ -321,6 +322,7 @@ public sealed class ThreadsUserClient
         BaseMediaContainerContent postContent,
         string? text = null,
         string? replyToId = null,
+        string? quotePostId = null,
         ReplyControl replyControl = ReplyControl.Everyone,
         string[]? allowlistedCountryCodes = null,
         CancellationToken cancellationToken = default
@@ -348,6 +350,7 @@ public sealed class ThreadsUserClient
                 replyControl,
                 text,
                 replyToId,
+                quotePostId,
                 allowlistedCountryCodes is not null ? string.Join(",", allowlistedCountryCodes) : null,
                 cancellationToken
             );
