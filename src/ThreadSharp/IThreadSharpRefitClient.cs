@@ -140,4 +140,11 @@ internal partial interface IThreadSharpRefitClient
         [AliasAs("creation_id")] string threadsMediaIdToPublish,
         CancellationToken cancellationToken = default
     );
+
+    [Post("/v1.0/{threadsPostId}/repost")]
+    Task<ApiResponse<Stream>> RepostAsync(
+        [AliasAs("access_token")] string accessToken,
+        string threadsPostId,
+        CancellationToken cancellationToken = default
+    );
 }

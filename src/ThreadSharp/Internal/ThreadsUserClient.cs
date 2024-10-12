@@ -433,4 +433,51 @@ public sealed class ThreadsUserClient
             return new ThreadsResult<ThreadsIdContainer>(content, response.StatusCode);
         }, _getMaxRetriesOnServerError());
     }
+
+    /// <summary>
+    /// Reposts a post on the user's profile ("Reposts" tab).
+    /// </summary>
+    /// <param name="mediaContainerId">The ID of the post/media container to repost.</param>
+    /// <param name="cancellationToken">
+    /// The cancellation token to use in case the caller chooses to cancel the operation.
+    /// </param>
+    /// <returns>The result, containing either a <see cref="ThreadsIdContainer"/> or an error.</returns>
+    public Task<ThreadsResult<ThreadsIdContainer>> RepostAsync(string mediaContainerId, CancellationToken cancellationToken = default)
+    {
+        if (_threadsUserId is not null)
+            throw new InvalidOperationException("Cannot repost as another user.");
+
+        return RetryHelpers.RetryOnServerErrorAsync(async () =>
+        {
+            using var response = await _refitClient.RepostAsync(_accessToken, mediaContainerId, cancellationToken);
+
+            if (response.Content == null)
+                return new ThreadsResult<ThreadsIdContainer>(error: new ThreadsBlankResponseException(), response.StatusCode);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    return new ThreadsResult<ThreadsIdContainer>(error: new ThreadsUnauthenticatedException(), response.StatusCode);
+
+                var errorContent = await JsonSerializer.DeserializeAsync(
+                    response.Content,
+                    ThreadsSourceGenerationContext.Default.DictionaryStringJsonElement,
+                    cancellationToken
+                );
+
+                if (errorContent == null)
+                    return new ThreadsResult<ThreadsIdContainer>(error: new ThreadsBlankResponseException(), response.StatusCode);
+
+                return new ThreadsResult<ThreadsIdContainer>(new ThreadsRequestException(errorContent), response.StatusCode);
+            }
+
+            var content = await JsonSerializer.DeserializeAsync(
+                response.Content,
+                ThreadsSourceGenerationContext.Default.ThreadsIdContainer,
+                cancellationToken: cancellationToken
+            );
+
+            return new ThreadsResult<ThreadsIdContainer>(content, response.StatusCode);
+        });
+    }
 }
