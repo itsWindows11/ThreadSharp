@@ -3,8 +3,8 @@
 <p align="center">
   <a style="text-decoration:none" href="https://github.com/itsWindows11/ThreadSharp/actions/workflows/nuget.yml">
     <img src="https://github.com/itsWindows11/ThreadSharp/actions/workflows/nuget.yml/badge.svg" alt="CI Status" /></a>
-  <a style="text-decoration:none" href="https://discord.com/channels/714581497222398064/913496895006072843">
-    <img src="https://img.shields.io/badge/discuss-on%20discord-5865F2" alt="Discord" /></a>
+  <!--<a style="text-decoration:none" href="https://discord.com/channels/714581497222398064/913496895006072843">
+    <img src="https://img.shields.io/badge/discuss-on%20discord-5865F2" alt="Discord" /></a>-->
   <a style="text-decoration:none" href="https://www.nuget.org/packages/ThreadSharp">
     <img src="https://img.shields.io/nuget/v/ThreadSharp" alt="Discord" /></a>
 </p>
