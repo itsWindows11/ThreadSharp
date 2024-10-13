@@ -15,16 +15,16 @@ namespace ThreadSharp.Internal;
 /// </summary>
 public sealed class ThreadsInsightsClient
 {
-    private readonly string _accessToken;
+    private readonly Func<string> _getAccessToken;
     private readonly IThreadSharpRefitClient _refitClient;
     private readonly Func<int> _getMaxRetriesOnServerError;
 
     internal ThreadsInsightsClient(
-        string accessToken,
+        Func<string> getAccessToken,
         IThreadSharpRefitClient retrofitClient,
         Func<int> getMaxRetriesOnServerError)
     {
-        _accessToken = accessToken;
+        _getAccessToken = getAccessToken;
         _refitClient = retrofitClient;
         _getMaxRetriesOnServerError = getMaxRetriesOnServerError;
     }
@@ -75,8 +75,8 @@ public sealed class ThreadsInsightsClient
         return RetryHelpers.RetryOnServerErrorAsync(async () =>
         {
             using var response = breakdownStringList?.Count > 0
-                ? await _refitClient.GetUserInsightsAsync(_accessToken, metricPagingParameters, string.Join(",", breakdownStringList), cancellationToken: cancellationToken)
-                : await _refitClient.GetUserInsightsAsync(_accessToken, metricPagingParameters, cancellationToken: cancellationToken);
+                ? await _refitClient.GetUserInsightsAsync(_getAccessToken(), metricPagingParameters, string.Join(",", breakdownStringList), cancellationToken: cancellationToken)
+                : await _refitClient.GetUserInsightsAsync(_getAccessToken(), metricPagingParameters, cancellationToken: cancellationToken);
 
             if (response.Content == null)
                 return new ThreadsResult<List<ThreadsUserInsightDataBase>>(error: new ThreadsBlankResponseException(), response.StatusCode);
@@ -126,7 +126,7 @@ public sealed class ThreadsInsightsClient
     {
         return RetryHelpers.RetryOnServerErrorAsync(async () =>
         {
-            using var response = await _refitClient.GetMediaInsightsAsync(_accessToken, string.Join(",", metrics), mediaContainerId, cancellationToken);
+            using var response = await _refitClient.GetMediaInsightsAsync(_getAccessToken(), string.Join(",", metrics), mediaContainerId, cancellationToken);
 
             if (response.Content == null)
                 return new ThreadsResult<List<ThreadsMediaInsightItem>>(error: new ThreadsBlankResponseException(), response.StatusCode);
