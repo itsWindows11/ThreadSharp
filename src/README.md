@@ -1,4 +1,6 @@
-![ThreadSharp banner](https://github.com/itsWindows11/ThreadSharp/blob/main/assets/banner.png?raw=true)
+![ThreadSharp banner](https://raw.githubusercontent.com/itsWindows11/ThreadSharp/refs/heads/main/assets/banner.png)
+
+[![CI Status](https://github.com/itsWindows11/ThreadSharp/actions/workflows/nuget.yml/badge.svg)](https://github.com/itsWindows11/ThreadSharp/actions/workflows/nuget.yml)
 
 ## Documentation
 
