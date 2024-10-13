@@ -12,16 +12,16 @@ namespace ThreadSharp.Internal;
 /// </summary>
 public sealed class ThreadsThreadManagementClient
 {
-    private readonly string _accessToken;
+    private readonly Func<string> _getAccessToken;
     private readonly IThreadSharpRefitClient _refitClient;
     private readonly Func<int> _getMaxRetriesOnServerError;
 
     internal ThreadsThreadManagementClient(
-        string accessToken,
+        Func<string> getAccessToken,
         IThreadSharpRefitClient retrofitClient,
         Func<int> getMaxRetriesOnServerError)
     {
-        _accessToken = accessToken;
+        _getAccessToken = getAccessToken;
         _refitClient = retrofitClient;
         _getMaxRetriesOnServerError = getMaxRetriesOnServerError;
     }
@@ -40,7 +40,7 @@ public sealed class ThreadsThreadManagementClient
     {
         return RetryHelpers.RetryOnServerErrorAsync(async () =>
         {
-            using var response = await _refitClient.GetThreadAsync(_accessToken, mediaContainerId, "id,status,error_message", cancellationToken);
+            using var response = await _refitClient.GetThreadAsync(_getAccessToken(), mediaContainerId, "id,status,error_message", cancellationToken);
 
             if (response.Content == null)
                 return new ThreadsResult<ThreadsMediaContainerStatus>(new ThreadsBlankResponseException(), response.StatusCode);
@@ -94,8 +94,8 @@ public sealed class ThreadsThreadManagementClient
         return RetryHelpers.RetryOnServerErrorAsync(async () =>
         {
             using var response = fields is not null
-                ? await _refitClient.GetThreadAsync(_accessToken, threadId, string.Join(",", fields), cancellationToken)
-                : await _refitClient.GetThreadAsync(_accessToken, threadId, cancellationToken: cancellationToken);
+                ? await _refitClient.GetThreadAsync(_getAccessToken(), threadId, string.Join(",", fields), cancellationToken)
+                : await _refitClient.GetThreadAsync(_getAccessToken(), threadId, cancellationToken: cancellationToken);
 
             if (response.Content == null)
                 return new ThreadsResult<ThreadsPost>(error: new ThreadsBlankResponseException(), response.StatusCode);
@@ -153,8 +153,8 @@ public sealed class ThreadsThreadManagementClient
         return RetryHelpers.RetryOnServerErrorAsync(async () =>
         {
             using var response = fields is not null
-                ? await _refitClient.GetRepliesAsync(_accessToken, threadId, reverse, pagingParameters, string.Join(",", fields), cancellationToken)
-                : await _refitClient.GetRepliesAsync(_accessToken, threadId, reverse, pagingParameters, cancellationToken: cancellationToken);
+                ? await _refitClient.GetRepliesAsync(_getAccessToken(), threadId, reverse, pagingParameters, string.Join(",", fields), cancellationToken)
+                : await _refitClient.GetRepliesAsync(_getAccessToken(), threadId, reverse, pagingParameters, cancellationToken: cancellationToken);
 
             if (response.Content == null)
                 return new ThreadsResult<List<ThreadsPost>>(error: new ThreadsBlankResponseException(), response.StatusCode);
@@ -218,8 +218,8 @@ public sealed class ThreadsThreadManagementClient
         return RetryHelpers.RetryOnServerErrorAsync(async () =>
         {
             using var response = fields is not null
-                ? await _refitClient.GetConversationAsync(_accessToken, threadId, reverse, pagingParameters, string.Join(",", fields), cancellationToken)
-                : await _refitClient.GetConversationAsync(_accessToken, threadId, reverse, pagingParameters, cancellationToken: cancellationToken);
+                ? await _refitClient.GetConversationAsync(_getAccessToken(), threadId, reverse, pagingParameters, string.Join(",", fields), cancellationToken)
+                : await _refitClient.GetConversationAsync(_getAccessToken(), threadId, reverse, pagingParameters, cancellationToken: cancellationToken);
 
             if (response.Content == null)
                 return new ThreadsResult<List<ThreadsPost>>(error: new ThreadsBlankResponseException(), response.StatusCode);
@@ -268,7 +268,7 @@ public sealed class ThreadsThreadManagementClient
     {
         return RetryHelpers.RetryOnServerErrorAsync(async () =>
         {
-            using var response = await _refitClient.ManageReplyAsync(_accessToken, threadId, hide, cancellationToken);
+            using var response = await _refitClient.ManageReplyAsync(_getAccessToken(), threadId, hide, cancellationToken);
 
             if (response.Content == null)
                 return new ThreadsResult<ThreadsManageReplyResult>(error: new ThreadsBlankResponseException(), response.StatusCode);

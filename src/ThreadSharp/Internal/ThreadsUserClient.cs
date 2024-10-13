@@ -17,16 +17,16 @@ public sealed class ThreadsUserClient
 {
     private readonly string? _threadsUserId;
 
-    private readonly string _accessToken;
+    private readonly Func<string> _getAccessToken;
     private readonly IThreadSharpRefitClient _refitClient;
     private readonly Func<int> _getMaxRetriesOnServerError;
 
     internal ThreadsUserClient(
-        string accessToken,
+        Func<string> getAccessToken,
         IThreadSharpRefitClient retrofitClient,
         Func<int> getMaxRetriesOnServerError)
     {
-        _accessToken = accessToken;
+        _getAccessToken = getAccessToken;
         _refitClient = retrofitClient;
         _getMaxRetriesOnServerError = getMaxRetriesOnServerError;
     }
@@ -51,8 +51,8 @@ public sealed class ThreadsUserClient
         return RetryHelpers.RetryOnServerErrorAsync(async () =>
         {
             using var response = _threadsUserId is not null
-                ? (fields is not null ? await _refitClient.GetProfileAsync(_accessToken, _threadsUserId, string.Join(",", fields), cancellationToken: cancellationToken) : await _refitClient.GetProfileAsync(_accessToken, _threadsUserId, cancellationToken: cancellationToken))
-                : (fields is not null ? await _refitClient.GetProfileAsync(_accessToken, string.Join(",", fields), cancellationToken: cancellationToken) : await _refitClient.GetProfileAsync(_accessToken, cancellationToken: cancellationToken));
+                ? (fields is not null ? await _refitClient.GetProfileAsync(_getAccessToken(), _threadsUserId, string.Join(",", fields), cancellationToken: cancellationToken) : await _refitClient.GetProfileAsync(_getAccessToken(), _threadsUserId, cancellationToken: cancellationToken))
+                : (fields is not null ? await _refitClient.GetProfileAsync(_getAccessToken(), string.Join(",", fields), cancellationToken: cancellationToken) : await _refitClient.GetProfileAsync(_getAccessToken(), cancellationToken: cancellationToken));
 
             if (response.Content == null)
                 return new ThreadsResult<ThreadsProfile>(error: new ThreadsBlankResponseException(), response.StatusCode);
@@ -105,8 +105,8 @@ public sealed class ThreadsUserClient
         return RetryHelpers.RetryOnServerErrorAsync(async () =>
         {
             using var response = _threadsUserId is not null
-                ? await _refitClient.GetThreadsAsync(_accessToken, pagingParameters, _threadsUserId, limit: limit, cancellationToken: cancellationToken)
-                : await _refitClient.GetThreadsAsync(_accessToken, pagingParameters, limit: limit, cancellationToken: cancellationToken);
+                ? await _refitClient.GetThreadsAsync(_getAccessToken(), pagingParameters, _threadsUserId, limit: limit, cancellationToken: cancellationToken)
+                : await _refitClient.GetThreadsAsync(_getAccessToken(), pagingParameters, limit: limit, cancellationToken: cancellationToken);
 
             if (response.Content == null)
                 return new ThreadsResult<List<ThreadsPost>>(error: new ThreadsBlankResponseException(), response.StatusCode);
@@ -162,8 +162,8 @@ public sealed class ThreadsUserClient
         return RetryHelpers.RetryOnServerErrorAsync(async () =>
         {
             using var response = _threadsUserId is not null
-                ? await _refitClient.GetRepliesAsync(_accessToken, pagingParameters, _threadsUserId, limit: limit, cancellationToken: cancellationToken)
-                : await _refitClient.GetRepliesAsync(_accessToken, pagingParameters, limit: limit, cancellationToken: cancellationToken);
+                ? await _refitClient.GetRepliesAsync(_getAccessToken(), pagingParameters, _threadsUserId, limit: limit, cancellationToken: cancellationToken)
+                : await _refitClient.GetRepliesAsync(_getAccessToken(), pagingParameters, limit: limit, cancellationToken: cancellationToken);
 
             if (response.Content == null)
                 return new ThreadsResult<List<ThreadsPost>>(error: new ThreadsBlankResponseException(), response.StatusCode);
@@ -214,7 +214,7 @@ public sealed class ThreadsUserClient
 
         return RetryHelpers.RetryOnServerErrorAsync(async () =>
         {
-            using var response = await _refitClient.GetPublishingLimitAsync(_accessToken, cancellationToken: cancellationToken);
+            using var response = await _refitClient.GetPublishingLimitAsync(_getAccessToken(), cancellationToken: cancellationToken);
 
             if (response.Content == null)
                 return new ThreadsResult<ThreadsPublishingLimitData>(error: new ThreadsBlankResponseException(), response.StatusCode);
@@ -263,8 +263,8 @@ public sealed class ThreadsUserClient
         return RetryHelpers.RetryOnServerErrorAsync(async () =>
         {
             using var response = fields is not null
-                ? await _refitClient.GetMediaContainerAsync(_accessToken, mediaContainerId, string.Join(",", fields), cancellationToken: cancellationToken)
-                : await _refitClient.GetMediaContainerAsync(_accessToken, mediaContainerId, cancellationToken: cancellationToken);
+                ? await _refitClient.GetMediaContainerAsync(_getAccessToken(), mediaContainerId, string.Join(",", fields), cancellationToken: cancellationToken)
+                : await _refitClient.GetMediaContainerAsync(_getAccessToken(), mediaContainerId, cancellationToken: cancellationToken);
 
             if (response.Content == null)
                 return new ThreadsResult<ThreadsIdContainer>(error: new ThreadsBlankResponseException(), response.StatusCode);
@@ -342,7 +342,7 @@ public sealed class ThreadsUserClient
         return RetryHelpers.RetryOnServerErrorAsync(async () =>
         {
             using var response = await _refitClient.CreateMediaContainerAsync(
-                _accessToken,
+                _getAccessToken(),
                 mediaType,
                 postContent,
                 replyControl,
@@ -399,7 +399,7 @@ public sealed class ThreadsUserClient
 
         return RetryHelpers.RetryOnServerErrorAsync(async () =>
         {
-            using var response = await _refitClient.PublishMediaContainerAsync(_accessToken, mediaContainerId, cancellationToken: cancellationToken);
+            using var response = await _refitClient.PublishMediaContainerAsync(_getAccessToken(), mediaContainerId, cancellationToken: cancellationToken);
 
             if (response.Content == null)
                 return new ThreadsResult<ThreadsIdContainer>(error: new ThreadsBlankResponseException(), response.StatusCode);

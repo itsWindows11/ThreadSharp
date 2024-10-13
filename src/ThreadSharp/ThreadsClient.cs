@@ -12,7 +12,7 @@ namespace ThreadSharp;
 /// </summary>
 public sealed class ThreadsClient : IDisposable
 {
-    private readonly string _accessToken;
+    private string _accessToken;
 
     private readonly HttpClient _httpClient;
     private readonly IThreadSharpRefitClient _refitClient;
@@ -22,6 +22,15 @@ public sealed class ThreadsClient : IDisposable
     /// the Threads API's end.
     /// </summary>
     public int MaxRetriesOnServerError { get; set; } = 5;
+
+    /// <summary>
+    /// Sets the current user's access token, mostly for emergency
+    /// purposes or when a new access token is generated.
+    /// </summary>
+    public string AccessToken
+    {
+        set => _accessToken = value;
+    }
 
     /// <summary>
     /// The backing <see cref="HttpClient"/> for the client.
@@ -80,9 +89,9 @@ public sealed class ThreadsClient : IDisposable
             })
         });
 
-        Me = new(_accessToken, _refitClient, () => MaxRetriesOnServerError);
-        Threads = new(_accessToken, _refitClient, () => MaxRetriesOnServerError);
-        Insights = new(_accessToken, _refitClient, () => MaxRetriesOnServerError);
+        Me = new(() => _accessToken, _refitClient, () => MaxRetriesOnServerError);
+        Threads = new(() => _accessToken, _refitClient, () => MaxRetriesOnServerError);
+        Insights = new(() => _accessToken, _refitClient, () => MaxRetriesOnServerError);
     }
 
     /*/// <summary>
