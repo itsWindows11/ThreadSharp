@@ -26,13 +26,14 @@ Creates an instance of [ThreadsClient](./ThreadsClient) which doesn't automatica
 
 ## Properties
 
-| Property                | Type                                                                        | Summary                                                                                                                                    | Default Value |
-|-------------------------|-----------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| MaxRetriesOnServerError | `int`                                                                       | The maximum amount of retries to do when a request fails on the Threads API's end.                                                         | 5             |
-| BackingClient           | `HttpClient`                                                                | The backing HttpClient for the client. **Use of the `SendRequestAsync(HttpMethod, string)` method is preferred over using this directly.** | --            |
-| Me                      | [`ThreadsUserClient`](./Internal/ThreadsUserClient)                         | Client for all things user related for the current authenticated user, including posting threads.                                          | --            |
-| Threads                 | [`ThreadsThreadManagementClient`](./Internal/ThreadsThreadManagementClient) | Client for thread fetching & management.                                                                                                   | --            |
-| Insights                | [`ThreadsInsightsClient`](./Internal/ThreadsInsightsClient)                 | Client for all things insight/data related for the current authenticated user.                                                             | --            |
+| Property                | Type                                                                        | Summary                                                                                                                                       | Default Value |
+|-------------------------|-----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| MaxRetriesOnServerError | `int`                                                                       | The maximum amount of retries to do when a request fails on the Threads API's end.                                                            | 5             |
+| AccessToken             | `string`                                                                    | Sets the current user's access token, mostly for emergency purposes or when a new access token is generated.                                  | 5             |
+| BackingClient           | `HttpClient`                                                                | The backing HttpClient for the client.<br>**Use of the `SendRequestAsync(HttpMethod, string)` method is preferred over using this directly.** | --            |
+| Me                      | [`ThreadsUserClient`](./Internal/ThreadsUserClient)                         | Client for all things user related for the current authenticated user, including posting threads.                                             | --            |
+| Threads                 | [`ThreadsThreadManagementClient`](./Internal/ThreadsThreadManagementClient) | Client for thread fetching & management.                                                                                                      | --            |
+| Insights                | [`ThreadsInsightsClient`](./Internal/ThreadsInsightsClient)                 | Client for all things insight/data related for the current authenticated user.                                                                | --            |
 
 ## Methods
 
