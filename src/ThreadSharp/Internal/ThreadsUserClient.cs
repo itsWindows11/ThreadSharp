@@ -308,6 +308,7 @@ public sealed class ThreadsUserClient
     /// </param>
     /// <param name="text">The text to put in the post.</param>
     /// <param name="replyToId">The post/media container ID to reply to.</param>
+    /// <param name="quotePostId">The post/media container ID to quote.</param>
     /// <param name="replyControl">An option to restrict replies or open them to everyone.</param>
     /// <param name="allowlistedCountryCodes">List of valid ISO 3166-1 alpha-2 country codes to restrict viewing the post to.</param>
     /// <param name="cancellationToken">
@@ -321,6 +322,7 @@ public sealed class ThreadsUserClient
         BaseMediaContainerContent postContent,
         string? text = null,
         string? replyToId = null,
+        string? quotePostId = null,
         ReplyControl replyControl = ReplyControl.Everyone,
         string[]? allowlistedCountryCodes = null,
         CancellationToken cancellationToken = default
@@ -348,6 +350,7 @@ public sealed class ThreadsUserClient
                 replyControl,
                 text,
                 replyToId,
+                quotePostId,
                 allowlistedCountryCodes is not null ? string.Join(",", allowlistedCountryCodes) : null,
                 cancellationToken
             );
@@ -429,5 +432,52 @@ public sealed class ThreadsUserClient
 
             return new ThreadsResult<ThreadsIdContainer>(content, response.StatusCode);
         }, _getMaxRetriesOnServerError());
+    }
+
+    /// <summary>
+    /// Reposts a post on the user's profile ("Reposts" tab).
+    /// </summary>
+    /// <param name="mediaContainerId">The ID of the post/media container to repost.</param>
+    /// <param name="cancellationToken">
+    /// The cancellation token to use in case the caller chooses to cancel the operation.
+    /// </param>
+    /// <returns>The result, containing either a <see cref="ThreadsIdContainer"/> or an error.</returns>
+    public Task<ThreadsResult<ThreadsIdContainer>> RepostAsync(string mediaContainerId, CancellationToken cancellationToken = default)
+    {
+        if (_threadsUserId is not null)
+            throw new InvalidOperationException("Cannot repost as another user.");
+
+        return RetryHelpers.RetryOnServerErrorAsync(async () =>
+        {
+            using var response = await _refitClient.RepostAsync(_getAccessToken(), mediaContainerId, cancellationToken);
+
+            if (response.Content == null)
+                return new ThreadsResult<ThreadsIdContainer>(error: new ThreadsBlankResponseException(), response.StatusCode);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    return new ThreadsResult<ThreadsIdContainer>(error: new ThreadsUnauthenticatedException(), response.StatusCode);
+
+                var errorContent = await JsonSerializer.DeserializeAsync(
+                    response.Content,
+                    ThreadsSourceGenerationContext.Default.DictionaryStringJsonElement,
+                    cancellationToken
+                );
+
+                if (errorContent == null)
+                    return new ThreadsResult<ThreadsIdContainer>(error: new ThreadsBlankResponseException(), response.StatusCode);
+
+                return new ThreadsResult<ThreadsIdContainer>(new ThreadsRequestException(errorContent), response.StatusCode);
+            }
+
+            var content = await JsonSerializer.DeserializeAsync(
+                response.Content,
+                ThreadsSourceGenerationContext.Default.ThreadsIdContainer,
+                cancellationToken: cancellationToken
+            );
+
+            return new ThreadsResult<ThreadsIdContainer>(content, response.StatusCode);
+        });
     }
 }

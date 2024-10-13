@@ -128,6 +128,7 @@ internal partial interface IThreadSharpRefitClient
         BaseMediaContainerContent postContent,
         [AliasAs("reply_control")] ReplyControl replyControl = ReplyControl.Everyone,
         [AliasAs("reply_to_id")] string? replyToId = null,
+        [AliasAs("quote_post_id")] string? quotePostId = null,
         string? text = null,
         [AliasAs("allowlisted_country_codes")] string? allowlistedCountryCodes = null,
         CancellationToken cancellationToken = default
@@ -137,6 +138,13 @@ internal partial interface IThreadSharpRefitClient
     Task<ApiResponse<Stream>> PublishMediaContainerAsync(
         [AliasAs("access_token")] string accessToken,
         [AliasAs("creation_id")] string threadsMediaIdToPublish,
+        CancellationToken cancellationToken = default
+    );
+
+    [Post("/v1.0/{threadsPostId}/repost")]
+    Task<ApiResponse<Stream>> RepostAsync(
+        [AliasAs("access_token")] string accessToken,
+        string threadsPostId,
         CancellationToken cancellationToken = default
     );
 }

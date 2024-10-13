@@ -17,6 +17,7 @@ public static class ThreadsPostingHelpers
     /// <param name="threadsUserClient">The client to use for publishing.</param>
     /// <param name="text">The text to use in the post.</param>
     /// <param name="replyToId">The post/media container ID to reply to.</param>
+    /// <param name="quotePostId">The post/media container ID to quote.</param>
     /// <param name="replyControl">An option to restrict replies or open them to everyone.</param>
     /// <param name="allowlistedCountryCodes">List of valid ISO 3166-1 alpha-2 country codes to restrict viewing the post to.</param>
     /// <param name="cancellationToken">
@@ -29,6 +30,7 @@ public static class ThreadsPostingHelpers
         this ThreadsUserClient threadsUserClient,
         string text,
         string? replyToId = null,
+        string? quotePostId = null,
         ReplyControl replyControl = ReplyControl.Everyone,
         string[]? allowlistedCountryCodes = null,
         CancellationToken cancellationToken = default
@@ -41,6 +43,7 @@ public static class ThreadsPostingHelpers
             new EmptyContainerContent(),
             text,
             replyToId,
+            quotePostId,
             replyControl,
             allowlistedCountryCodes,
             cancellationToken
@@ -62,6 +65,7 @@ public static class ThreadsPostingHelpers
     /// The cancellation token to use in case the caller chooses to cancel the operation.
     /// </param>
     /// <param name="replyToId">The post/media container ID to reply to.</param>
+    /// <param name="quotePostId">The post/media container ID to quote.</param>
     /// <param name="replyControl">An option to restrict replies or open them to everyone.</param>
     /// <param name="allowlistedCountryCodes">List of valid ISO 3166-1 alpha-2 country codes to restrict viewing the post to.</param>
     /// <exception cref="InvalidOperationException">
@@ -75,6 +79,7 @@ public static class ThreadsPostingHelpers
         IEnumerable<ThreadsMediaContainerStatus> mediaContainerStatuses,
         string? text = null,
         string? replyToId = null,
+        string? quotePostId = null,
         ReplyControl replyControl = ReplyControl.Everyone,
         string[]? allowlistedCountryCodes = null,
         CancellationToken cancellationToken = default
@@ -90,6 +95,7 @@ public static class ThreadsPostingHelpers
             },
             text,
             replyToId,
+            quotePostId,
             replyControl,
             allowlistedCountryCodes,
             cancellationToken
