@@ -449,7 +449,7 @@ public sealed class ThreadsUserClient
 
         return RetryHelpers.RetryOnServerErrorAsync(async () =>
         {
-            using var response = await _refitClient.RepostAsync(_accessToken, mediaContainerId, cancellationToken);
+            using var response = await _refitClient.RepostAsync(_getAccessToken(), mediaContainerId, cancellationToken);
 
             if (response.Content == null)
                 return new ThreadsResult<ThreadsIdContainer>(error: new ThreadsBlankResponseException(), response.StatusCode);
