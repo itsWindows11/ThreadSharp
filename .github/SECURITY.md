@@ -34,7 +34,7 @@ In order to report a security vulnerability, you can use GitHub's built-in tool 
 
 ### Spotting secrets in code
 
-If you spot a secret in the code, please let us know by contacting us. This helps us quietly remove the vulnerability without letting others abuse it.
+If you spot a secret in the code, please let us know by [contacting us](mailto:itswin11@outlook.com). This helps us quietly remove the secret, and invalidate it.
 If you notice that we've accidentally published an app credential file or removed it from the `.gitignore` in the project root, please notify us.
 
 ## Our Measures
