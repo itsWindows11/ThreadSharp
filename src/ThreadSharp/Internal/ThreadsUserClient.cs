@@ -196,6 +196,58 @@ public sealed class ThreadsUserClient
     }
 
     /// <summary>
+    /// Gets mentions of the currently authenticated user.
+    /// </summary>
+    /// <param name="fields">
+    /// The media container fields to retrieve. By default, all available
+    /// media container fields will be returned.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// The cancellation token to use in case the caller chooses to cancel the operation.
+    /// </param>
+    /// <returns>
+    /// The result, containing either a list of <see cref="ThreadsPost"/>s
+    /// representing posts the user is mentioned in,or an error.
+    /// </returns>
+    public Task<ThreadsResult<List<ThreadsPost>>> GetMentionsAsync(string[]? fields = null, CancellationToken cancellationToken = default)
+    {
+        return RetryHelpers.RetryOnServerErrorAsync(async () =>
+        {
+            using var response = _threadsUserId is not null
+                ? (fields is not null ? await _refitClient.GetMentionsAsync(_getAccessToken(), string.Join(",", fields), cancellationToken: cancellationToken) : await _refitClient.GetMentionsAsync(_getAccessToken(), cancellationToken: cancellationToken))
+                : (fields is not null ? await _refitClient.GetMentionsAsync(_getAccessToken(), string.Join(",", fields), cancellationToken: cancellationToken) : await _refitClient.GetMentionsAsync(_getAccessToken(), cancellationToken: cancellationToken));
+
+            if (response.Content == null)
+                return new ThreadsResult<List<ThreadsPost>>(error: new ThreadsBlankResponseException(), response.StatusCode);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    return new ThreadsResult<List<ThreadsPost>>(error: new ThreadsUnauthenticatedException(), response.StatusCode);
+
+                var errorContent = await JsonSerializer.DeserializeAsync(
+                    response.Content,
+                    ThreadsSourceGenerationContext.Default.DictionaryStringJsonElement,
+                    cancellationToken
+                );
+
+                if (errorContent == null)
+                    return new ThreadsResult<List<ThreadsPost>>(error: new ThreadsBlankResponseException(), response.StatusCode);
+
+                return new ThreadsResult<List<ThreadsPost>>(new ThreadsRequestException(errorContent), response.StatusCode);
+            }
+
+            var content = await JsonSerializer.DeserializeAsync(
+                response.Content,
+                ThreadsSourceGenerationContext.Default.ThreadsDataContainerListThreadsPost,
+                cancellationToken: cancellationToken
+            );
+
+            return new ThreadsResult<List<ThreadsPost>>(content?.Data, response.StatusCode);
+        }, _getMaxRetriesOnServerError());
+    }
+
+    /// <summary>
     /// Gets the publishing limit of the currently authenticated user.
     /// </summary>
     /// <param name="cancellationToken">

@@ -48,6 +48,13 @@ internal partial interface IThreadSharpRefitClient
         string fields = "config,quota_usage,reply_config,reply_quota_usage",
         CancellationToken cancellationToken = default
     );
+
+    [Get("/v1.0/mentions")]
+    Task<ApiResponse<Stream>> GetMentionsAsync(
+        [AliasAs("access_token")] string accessToken,
+        string fields = "id,media_product_type,media_type,media_url,permalink,username,text,timestamp,shortcode,thumbnail_url,children,is_quote_post,has_replies,root_post,replied_to,is_reply,is_reply_owned_by_me,reply_audience",
+        CancellationToken cancellationToken = default
+    );
 }
 
 // Thread management part for the Refit client, used as a base for the ThreadSharp wrapper.
