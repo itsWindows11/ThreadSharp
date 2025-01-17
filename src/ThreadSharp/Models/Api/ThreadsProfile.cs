@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using ThreadSharp.Models.Api.KeywordSearch;
 
 namespace ThreadSharp.Models.Api;
 
@@ -36,6 +37,13 @@ public sealed class ThreadsProfile : ThreadsIdContainer
     /// </summary>
     [JsonPropertyName("is_eligible_for_geo_gating")]
     public bool? IsEligibleForGeoGating { get; set; }
+
+    /// <summary>
+    /// A list of <see cref="KeywordSearchData"/>, representing
+    /// the user's recently searched keywords.
+    /// </summary>
+    [JsonPropertyName("recently_searched_keywords")]
+    public List<KeywordSearchData>? RecentlySearchedKeywords { get; set; }
 
     /// <inheritdoc />
     public override string ToString()
